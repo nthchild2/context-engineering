@@ -6,16 +6,20 @@ This file defines repository-level guidance for coding agents working in this pr
 - Applies to the entire repository unless a deeper `AGENTS.md` overrides it.
 
 ## Repository Purpose
-- This repository exists to develop a formal methodology for integrating agentic AI into software development at maximum practical capability.
+- This repository exists to develop a formal methodology for integrating agentic AI at maximum practical capability across domains.
 - The work starts with a manifesto on agentic orchestration and then turns those postulates into tools, workflows, and evaluation methods.
 - Treat the repository as a research-and-build environment, not a generic app scaffold.
 
 ## Main Goal
-- Help define, test, and operationalize a rigorous approach to agentic software development.
+- Help define, test, and operationalize a rigorous approach to agentic orchestration in general.
 - Prefer work that improves one of these three outcomes:
 - clearer principles
 - stronger orchestration patterns
-- more reliable developer tooling
+- more reliable orchestration tooling
+
+## Operating Procedure
+- `plans/build-methodology-plan.md` is the canonical operating procedure for cycle execution.
+- `AGENTS.md` is the repo-wide companion that enforces alignment with that procedure.
 
 ## Working Mode
 - Favor explicit reasoning over hand-wavy claims.
@@ -33,6 +37,8 @@ This file defines repository-level guidance for coding agents working in this pr
 
 ## Documentation Rules
 - When changing the intended workflow, update the relevant documentation in the same task.
+- If a cycle phase is executed, update required cycle artifacts in the same task when applicable:
+- `research/sources.md` -> `research/questions.md` -> `MANIFESTO.md` -> `research/cycles/cycle-XX.md`
 - Prefer concise, opinionated writing over generic AI platitudes.
 - Make it easy to trace a claim back to one of the following:
 - a source
@@ -60,3 +66,4 @@ This file defines repository-level guidance for coding agents working in this pr
 
 ## Handoff
 - In final updates, summarize what changed, note any validation performed, and call out open questions or remaining uncertainties.
+- Explicitly state which cycle artifacts were updated and which were intentionally unchanged.

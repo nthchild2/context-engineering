@@ -1,10 +1,10 @@
 # Agent Engineering
 
-`agent-engineering` is a research and development repository for agentic AI methodology, using software development as an early proving ground.
+`agent-engineering` is a research and development repository for domain-agnostic agentic AI methodology.
 
 ## Main Goal
 
-Develop a formal methodology for orchestrating agentic AI at maximum practical capability, then turn that methodology into concrete tools, workflows, and evaluation methods.
+Develop a formal methodology for orchestrating agentic AI at maximum practical capability, then turn that methodology into concrete tools, workflows, and evaluation methods across domains.
 
 ## Why This Exists
 
@@ -14,10 +14,16 @@ This repository exists to answer that question seriously.
 
 ## Current Direction
 
-The work proceeds in two stages:
+The work now runs as a recurring cycle:
 
-1. Write a general manifesto on agentic orchestration.
-2. Validate it in software development and derive tools from it rather than inventing tools first and rationalizing them later.
+1. Intake sources, questions, and validation artifacts.
+2. Distill evidence into descriptive observations and normative postulates.
+3. Nourish `MANIFESTO.md` with status-labeled postulates.
+4. Validate and feed unresolved gaps into the next cycle.
+
+Cycle planning is tracked in `plans/build-methodology-plan.md` and run records live in `research/cycles/`.
+
+`plans/build-methodology-plan.md` is the canonical operating procedure for building and refining the manifesto.
 
 ## Working Principles
 
@@ -26,6 +32,7 @@ The work proceeds in two stages:
 - Prefer source-backed claims, experiments, and executable feedback over intuition alone.
 - Treat orchestration as a systems design problem, not a prompt-writing trick.
 - Build around artifacts, checkpoints, and verification.
+- Keep methodology domain-agnostic unless a cycle explicitly declares a domain-specific application pass.
 - Iterate on repository instructions as the methodology hardens.
 
 ## Repository Structure
@@ -35,6 +42,7 @@ The work proceeds in two stages:
 - `.github/copilot-instructions.md`: aligned instructions for AI-assisted development tools.
 - `research/`: temporary research notes, source collection, and exploratory thinking.
 - `plans/`: documented plans for repository development and process steps.
+- `research/cycles/`: per-cycle input/output records and next-cycle queues.
 
 ## Where To Resume
 
@@ -44,7 +52,7 @@ Use `README.md` as the durable entry point and `research/` as the working area.
 - `research/`: provisional work such as open questions, sources, early theses, and draft postulates.
 - `research/questions.md`: the active question backlog.
 - `research/sources.md`: the auditable source list.
-- Next durable progress file to add: `research/status.md` as a session handoff and resume point.
+- `research/cycles/cycle-02.md`: latest cycle run record and open gaps for Cycle 03.
 
 ## Near-Term Questions
 

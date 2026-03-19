@@ -1,26 +1,85 @@
-# Manifesto for Agentic Orchestration
+# Manifesto for Agentic Orchestration (v0.2)
 
-This manifesto outlines postulates for orchestrating agentic AI at maximum practical capability, grounded in source-backed research. It separates descriptive claims (how agents behave) from normative claims (how they should be used). Postulates are derived from validated hypotheses and extracted notes in `research/sources.md` and `research/questions.md`.
+This manifesto is the durable output of a cyclic research process in this repository.
 
-## Descriptive Claims
-These describe observed behaviors of models and agents, based on empirical evidence.
+- Inputs: `research/sources.md`, `research/questions.md`, and cycle validation artifacts.
+- Output: postulates that are evidence-traceable and status-labeled.
+- Rule: separate descriptive observations from normative postulates.
+- Learning model: this manifesto is the repository's current best knowledge state, updated each cycle as evidence improves or contradicts prior assumptions.
 
-1. **Non-Determinism and Hallucinations**: Generative models produce non-deterministic outputs prone to hallucinations; confidence does not reliably indicate accuracy (Anthropic reduce hallucinations, OpenAI prompting guide).
-2. **Strengths in Pattern Tasks**: Models excel at pattern recognition, code generation, and tool-mediated execution but struggle with long-term memory and complex reasoning without aids (OpenAI GPT-5.1, survey paper).
-3. **Operational Limits**: Context windows, costs, latency, and tool interfaces constrain agent performance; memory must be externalized (Anthropic context, operational constraints).
-4. **Multi-Agent Dynamics**: Multiple agents improve outcomes through specialization but add coordination overhead if roles are unclear (AutoGen, CrewAI).
-5. **Domain-Specific Challenges**: In software engineering, agents require executable feedback for reliability, as self-confidence is insufficient (SWE-bench, SWE-Agent).
+## Descriptive Observations
+
+These claims describe how models and agent systems actually behave.
+
+1. **Non-determinism is persistent**: LLM outputs vary run-to-run, and confidence language is not a reliable accuracy signal.
+2. **Tool mediation increases reliability**: Models are stronger when they can execute and verify through tools instead of free-form text only.
+3. **Operational limits dominate design**: context windows, latency, cost, and tool interfaces constrain agent performance.
+4. **Multi-agent systems are conditional gains**: specialization can improve outcomes, but unclear roles add coordination noise.
+5. **High-stakes tasks require external feedback**: objective checks and independent evidence are stronger signals than self-reported certainty.
 
 ## Normative Postulates
-These prescribe how to design and use agentic systems for better outcomes.
 
-1. **Tool-Enable Agents**: Always equip agents with tools for verifiable execution; avoid relying on raw model outputs alone (Anthropic tool use, validated hypothesis 1).
-2. **Artifact-Centered Orchestration**: Design workflows around shared artifacts (code, tests, docs) with checkpoints and logs, not conversational personalities (AutoGen Studio, validated hypothesis 5).
-3. **Prioritize Verification**: Validate agent outputs through executable feedback (tests, linters) before integration; treat self-confidence as unreliable (SWE-bench, validated hypothesis 3).
-4. **Explicit Roles and Handoffs**: Use multi-agent patterns only with clear roles, boundaries, and handoffs to avoid noise (CrewAI, validated hypothesis 2).
-5. **Human Coordination as Design**: Treat human-agent communication as a core problem; gate autonomy for high-stakes decisions (Challenges paper, question 8).
-6. **Externalize Critical Information**: Never store persistent state, audit trails, or shared knowledge solely in model context; use files, databases, or logs (Anthropic context, question 10).
-7. **Evaluate Rigorously**: Measure orchestration via benchmarks and real tasks, not demos; distinguish model, orchestration, and specification failures (SWE-bench Verified, question 12).
-8. **Balance Trade-Offs**: Optimize for quality and reliability over speed or autonomy when adding agents; consider latency and cost (AutoGen v0.4, question 14).
-9. **Focus on Attention**: The scarcest resource is trustworthy attention; design systems to surface and verify key information efficiently (validated hypothesis 4).
-10. **Domain Adaptation**: In software engineering, emphasize decomposition, retrieval, and verification over general conversation (SWE-Agent, question 6).
+Status legend: `accepted` means sufficient evidence for use now; `provisional` means useful but still under active validation.
+
+### P1 - Tool-grounded execution (`accepted`)
+- Statement: Prefer agent actions that call tools and produce verifiable artifacts over raw narrative outputs.
+- Evidence: Anthropic tool-use docs; OpenAI reliability guidance.
+- Validation: Use objective pass/fail checks before accepting output.
+
+### P2 - Artifact-centered orchestration (`accepted`)
+- Statement: Coordinate work through shared artifacts (plans, records, outputs, docs, logs), not chat continuity.
+- Evidence: AutoGen Studio workflow/debug emphasis.
+- Validation: Require handoffs to update durable files each cycle.
+
+### P3 - Verification before trust (`accepted`)
+- Statement: Treat model confidence as untrusted until outputs pass executable or auditable checks.
+- Evidence: Hallucination guidance.
+- Validation: Add a verification field to cycle outputs for each promoted postulate.
+
+### P4 - Explicit role boundaries (`accepted`)
+- Statement: Use multi-agent design only when role boundaries and handoff contracts are explicit.
+- Evidence: AutoGen/CrewAI role-separation results and coordination overhead notes.
+- Validation: Reject multi-agent expansions without role and interface definitions.
+
+### P5 - Externalize memory and audit trails (`accepted`)
+- Statement: Persist state, rationale, and decisions in files/logs; never rely on transient model context alone.
+- Evidence: Context-window limitations and memory constraints across vendor docs.
+- Validation: Cycle records must include decisions, evidence links, and unresolved gaps.
+
+### P6 - Classify failures by layer (`provisional`)
+- Statement: Every failed run should be labeled as model, orchestration, or specification failure.
+- Evidence: Cross-source pattern from benchmark interpretation and orchestration debugging guidance.
+- Validation: Trial in Cycle 02 on at least one concrete domain task.
+- Cycle 02 status: `hold` (taxonomy and counting protocol defined, but not yet stress-tested on multiple executed runs).
+
+### P7 - Optimize for trustworthy attention (`provisional`)
+- Statement: Design flows that minimize irrelevant context and maximize surfaced, checkable signals.
+- Evidence: Validated hypothesis on attention scarcity and context management constraints.
+- Validation: Compare a focused-context run vs broad-context run in a future cycle.
+- Cycle 02 status: `hold` (supporting evidence expanded; controlled comparison still pending).
+
+### P8 - Evidence-weighted promotion (`provisional`)
+- Statement: Promote postulates only when evidence quality, reproducibility, and scope fit are explicit and auditable.
+- Evidence: NIST AI RMF, OECD principles, HELM-style evaluation framing.
+- Validation: Apply rubric to at least two postulate promotion decisions in Cycle 03.
+- Cycle 02 status: `added`.
+
+## Postulate Template
+
+Use this template when drafting or revising postulates.
+
+```markdown
+### PX - <short name> (`candidate|provisional|accepted|rejected`)
+- Statement: <normative claim>
+- Claim type: <descriptive|normative>
+- Evidence: <source links, benchmark references, experiment artifacts>
+- Scope and assumptions: <where this applies and where it may fail>
+- Validation method: <smallest executable or auditable check>
+- Last updated in cycle: <cycle-id>
+```
+
+## Provenance
+
+- `v0.1` derived in Cycle 01 from `research/sources.md` and `research/questions.md`.
+- `v0.2` updated in Cycle 02 with protocol-oriented evidence and status checks.
+- Operationalized with run records in `research/cycles/cycle-01.md` and `research/cycles/cycle-02.md`.
